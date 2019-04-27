@@ -14,7 +14,7 @@ public class targetController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Cannonball") {
             Destroy(collision.gameObject);
-            GameObject explode = Instantiate(ExplosionPrefab, ExplosionSpawn.position, Quaternion.identity);
+            GameObject explode = Instantiate(ExplosionPrefab, ExplosionSpawn.position, Quaternion.Euler(-90, 0, 0));
             _score++;
             scoreText.text = "Score = " + _score.ToString("0000");
             GetComponent<AudioSource>().Play();
