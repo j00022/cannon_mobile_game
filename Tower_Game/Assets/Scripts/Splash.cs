@@ -11,7 +11,7 @@ public class Splash : MonoBehaviour {
 	}
 	
     IEnumerator SleepTimer() {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(1);
     }
 	// Update is called once per frame
