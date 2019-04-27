@@ -15,6 +15,6 @@ public class PowerDisplay : MonoBehaviour {
 	// Update is called once per frame
 	public void textUpdate (float powerValue) {
         powerValue = (powerValue / 30) * 100;
-        powerNumber.text = powerValue.ToString("0");
+        powerNumber.text = "Power = " + powerValue.ToString("0");
 	}
 }
