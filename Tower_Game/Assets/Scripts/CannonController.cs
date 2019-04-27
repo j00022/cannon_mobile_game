@@ -24,6 +24,12 @@ public class CannonController : MonoBehaviour {
         _angle -= AngleIncrement;
         transform.rotation = Quaternion.Euler(0, 0, _angle);
     }
+    public void MoveRight() {
+        transform.root.position += Vector3.right * Speed;
+    }
+    public void MoveLeft() {
+        transform.root.position += Vector3.left * Speed;
+    }
     public void ChangePower(float newPower) {
         cannon_Power = newPower / 2 + 1;
     }
