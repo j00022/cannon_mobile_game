@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CannonController : MonoBehaviour {
     public int ball_count = 0;
@@ -14,6 +15,8 @@ public class CannonController : MonoBehaviour {
     public float speed = 0.075f;
 
     public AudioClip fireSound;
+    public Text shots_fired;
+    public float _shots_fired = 0;
 
     public void AngleUp() {
         if (_angle >= 90f)
@@ -45,6 +48,8 @@ public class CannonController : MonoBehaviour {
         queue.Enqueue(aCannonBall);
         Rigidbody2D cannonBallRigidBody = aCannonBall.GetComponent<Rigidbody2D>();
         cannonBallRigidBody.velocity = Quaternion.Euler(0, 0, _angle) * Vector3.right * cannon_Power;
+        _shots_fired++;
+        shots_fired.text = "Shots Fired = " + _shots_fired.ToString("0000");
     }
 
     // Use this for initialization
