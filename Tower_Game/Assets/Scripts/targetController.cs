@@ -18,6 +18,7 @@ public class targetController : MonoBehaviour {
             _score++;
             scoreText.text = "Score = " + _score.ToString("0000");
             GetComponent<AudioSource>().Play();
+            Destroy(explode, 10);
         }
     }
 
@@ -27,9 +28,4 @@ public class targetController : MonoBehaviour {
         GetComponent<AudioSource>().playOnAwake = false;
         GetComponent<AudioSource>().clip = scoreSound;
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

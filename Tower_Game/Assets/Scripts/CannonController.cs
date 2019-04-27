@@ -6,29 +6,29 @@ public class CannonController : MonoBehaviour {
     public GameObject Cannon_Ball;
     public Transform cannonBallSpawn;
     public int maxBalls;
-    private float cannon_Power = 0f;
+    private float cannon_Power = 1f;
     private const float AngleIncrement = 5f;
     private float _angle = 0;
     public Queue<GameObject> queue = new Queue<GameObject>();
+    public AudioClip fireSound;
 
     public void AngleUp() {
         if (_angle >= 90f)
             return;
-        Debug.Log("Move Angle Up");
         _angle += AngleIncrement;
         transform.rotation = Quaternion.Euler(0, 0, _angle);
     }
     public void AngleDown() {
         if (_angle <= 0f)
             return;
-        Debug.Log("Move Angle Down");
         _angle -= AngleIncrement;
         transform.rotation = Quaternion.Euler(0, 0, _angle);
     }
     public void ChangePower(float newPower) {
-        cannon_Power = newPower;
+        cannon_Power = newPower / 2 + 1;
     }
     public void Fire() {
+        GetComponent<AudioSource>().Play();
         if (queue.Count >= maxBalls) {
             Destroy(queue.Dequeue());
         }
@@ -39,19 +39,17 @@ public class CannonController : MonoBehaviour {
     }
 
     public void Awake() {
-        Debug.Log("In Awake");
        maxBalls = 10;
     }
     // Use this for initialization
     void Start() {
-        Debug.Log("In Start");
+        GetComponent<AudioSource>().clip = fireSound;
     }
 
     [Range(0.001f, 2.0f)]
     public float Speed = 0f;
     // Update is called once per frame
     void Update() {
-        Debug.Log("In Update");
         if (Input.GetKey(KeyCode.RightArrow)) {
             //Move cannon right
             transform.root.position += Vector3.right * Speed;
@@ -60,17 +58,5 @@ public class CannonController : MonoBehaviour {
             //Move cannon left
             transform.root.position += Vector3.left * Speed;
         }
-
     }
-
-    //For physics
-    private void FixedUpdate() {
-
-    }
-
-    //For UI stuff, such as camera following
-    private void LateUpdate() {
-
-    }
-
 }
